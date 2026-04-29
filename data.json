@@ -1,0 +1,74 @@
+{
+  "meta": {
+    "client": "{{FIRM_NAME}}",
+    "client_full": "{{FIRM_FULL_NAME}}",
+    "client_logo": "",
+    "project_codename": "{{FIRM_NAME}}",
+    "role": "Capital Formation",
+    "prepared_date": "{{Month YYYY}}",
+    "confidential": true
+  },
+
+  "kpis": [
+    { "value": "[TODO: verify]", "label": "Credit-platform hires", "sub": "Over the last 5 years" },
+    { "value": "[TODO: verify]", "label": "Prospects screened", "sub": "Across credit capital formation searches" },
+    { "value": "[TODO: verify]", "label": "Average number of candidates / senior search", "sub": "Rigorous assessment & talent funnel" },
+    { "value": "[TODO: verify]", "label": "Average time-to-hire", "sub": "Kickoff to offer extended" }
+  ],
+
+  "universe": [
+    { "value": "[TODO: verify]", "label": "Most Relevant Firms", "sub": "Credit Hedge Funds, Alternative Credit Platforms & Diversified Alternatives Managers" },
+    { "value": "[TODO: verify]", "label": "Target Candidate Pool", "sub": "Qualified Senior Candidates" },
+    { "value": "5", "label": "Archetypal Profiles", "sub": "For Calibration" }
+  ],
+
+  "dimensions": [
+    { "id": "institutional-cf",  "label": "Institutional Capital Formation",        "weight": 0.25, "color": "#1A9B58" },
+    { "id": "rm",                "label": "Relationship Management",                "weight": 0.20, "color": "#3A5BA0" },
+    { "id": "product-fluency",   "label": "Product Fluency / Depth",                "weight": 0.20, "color": "#2856A3" },
+    { "id": "credit-experience", "label": "Private / Structured Credit Experience", "weight": 0.20, "color": "#1C4380" },
+    { "id": "grit-resilience",   "label": "Grit & Resilience",                      "weight": 0.15, "color": "#4A6A82" }
+  ],
+
+  "timeline": [
+    { "phase": 1, "name": "Intake",                  "weeks": "1",     "funnel": "~200+",  "bar_text": "Prospects mapped across target pools",       "milestones": ["Search Kickoff: Define key considerations and unique value proposition. Outline search strategy and establish weekly meeting cadence."] },
+    { "phase": 2, "name": "Sourcing",                "weeks": "2",     "funnel": "~40–60", "bar_text": "Engaged & screened by G&Co",                  "milestones": ["Prospect Outreach: Begin outreach and assessment across varied target pools.","Archetypal Profile Discussion: Review prospect profiles to refine experience criteria and analytical skills benchmarks."] },
+    { "phase": 3, "name": "Candidate Introductions", "weeks": "3–8",   "funnel": "~8–12",  "bar_text": "Introduced to client",                        "milestones": ["Candidate Introductions & Assessments: Commence introductions and begin interviews with relevant stakeholders.","Weekly Update Calls: Review feedback, iterate on candidate discussions, and continue to test hypotheses."] },
+    { "phase": 4, "name": "Finalist Candidates",     "weeks": "8–12",  "funnel": "~2–3",   "bar_text": "Finalists complete a 360-day strategic business plan", "milestones": ["Select Finalist Candidates: Rank order candidates based on assessment matrix.","Case Study: Finalists present a 90/180/270/360-day business plan — the most illuminating part of our process."] },
+    { "phase": 5, "name": "Offer Process",           "weeks": "12–13", "funnel": "1",      "bar_text": "Hire",                                         "milestones": ["Frame Offer: Extend offer to finalist candidate.","References & Background Check: Complete thorough reference calls and background verification before start date."] }
+  ],
+
+  "track_record": [
+    { "role": "[TODO: role title]", "firm_type": "[TODO: verify]", "prospects_screened": "[TODO: verify]", "weeks_to_close": "[TODO: verify]", "tier": "A" }
+  ],
+
+  "archetypes": [
+    {
+      "name": "Archetype A",
+      "role": "[TODO: role title]",
+      "firm": "",
+      "firm_type": "",
+      "tier": "A",
+      "scores": {
+        "institutional-cf":  "[TODO: verify]",
+        "rm":                "[TODO: verify]",
+        "product-fluency":   "[TODO: verify]",
+        "credit-experience": "[TODO: verify]",
+        "grit-resilience":   "[TODO: verify]"
+      },
+      "facts": [
+        { "label": "Current Firm", "value": "[TODO: verify]" },
+        { "label": "Years of Experience", "value": "[TODO: verify]" }
+      ]
+    }
+  ],
+
+  "talent_pool": {
+    "creditHedge": [],
+    "altCredit": [],
+    "diversifiedAlts": [],
+    "desc": {}
+  },
+
+  "partners": []
+}

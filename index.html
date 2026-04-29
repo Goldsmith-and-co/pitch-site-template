@@ -1,0 +1,2110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-doc-title>Goldsmith &amp; Co</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ivory: #F0EEEA;
+            --cream: #E8E5DF;
+            --warm-white: #F4F3F0;
+            --gold: #2856A3;
+            --gold-light: #4A78C4;
+            --gold-dark: #1C4380;
+            --gold-glow: rgba(40, 86, 163, 0.08);
+            --gold-border: rgba(40, 86, 163, 0.22);
+            --charcoal: #1A1A1A;
+            --ink: #2D2D2D;
+            --slate: #4A4A4A;
+            --ash: #5A5A5A;
+            --silver: #888888;
+            --mist: #E8E6E1;
+            --white: #FFFFFF;
+            --green: #1A9B58;
+            --green-light: #E0F5EA;
+            --green-dark: #147A45;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        /* --- ENTRANCE ANIMATIONS --- */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 4px 14px rgba(40,86,163,0.25); }
+            50%     { box-shadow: 0 6px 22px rgba(40,86,163,0.45); }
+        }
+        .reveal { opacity: 0; transform: translateY(24px); }
+        .reveal.in-view {
+            animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .reveal.in-view.stagger-1 { animation-delay: 0.08s; }
+        .reveal.in-view.stagger-2 { animation-delay: 0.16s; }
+        .reveal.in-view.stagger-3 { animation-delay: 0.24s; }
+        .reveal.in-view.stagger-4 { animation-delay: 0.32s; }
+        .reveal.in-view.stagger-5 { animation-delay: 0.40s; }
+        .reveal.in-view.stagger-6 { animation-delay: 0.48s; }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .reveal, .reveal.in-view { opacity: 1; transform: none; animation: none; }
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--ivory);
+            color: var(--charcoal);
+            -webkit-font-smoothing: antialiased;
+            font-size: 19px;
+        }
+
+        a { color: inherit; }
+
+        /* --- MASTHEAD --- */
+        .masthead { background: var(--white); border-bottom: 1px solid var(--mist); }
+        .masthead-inner {
+            max-width: 1320px; margin: 0 auto; padding: 28px 48px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .brand { display: flex; align-items: center; gap: 20px; }
+        .brand img { height: 56px; }
+        .brand img.tp-mark { height: 84px; width: auto; margin: -14px 0; }
+        .brand-divider { color: var(--silver); font-weight: 300; font-size: 24px; }
+        .brand-wordmark {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 21.5px; letter-spacing: 0.22em;
+            color: var(--charcoal); text-transform: uppercase; font-weight: 500;
+        }
+        .masthead-right { text-align: right; font-size: 14.5px; color: var(--ash); line-height: 1.7; }
+        .masthead-right .confidential { color: var(--gold); letter-spacing: 2px; text-transform: uppercase; font-size: 12px; font-weight: 600; }
+        .gold-rule { height: 4px; background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold)); }
+
+        /* --- HERO --- */
+        .hero {
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.10) 0%, transparent 55%),
+                radial-gradient(ellipse at 50% 100%, rgba(0,0,0,0.18) 0%, transparent 60%),
+                linear-gradient(180deg, #2A5AAB 0%, #2856A3 50%, #234C92 100%);
+            padding: 80px 0 76px;
+            position: relative; overflow: hidden;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            border-bottom: 1px solid rgba(0,0,0,0.18);
+        }
+        .hero::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 50%, rgba(0,0,0,0.08) 100%);
+            pointer-events: none;
+        }
+        .hero-inner { max-width: 980px; margin: 0 auto; padding: 0 48px; text-align: center; position: relative; z-index: 1; }
+        .hero .eyebrow {
+            font-size: 12px; color: rgba(255,255,255,0.85); letter-spacing: 3px;
+            text-transform: uppercase; font-weight: 600; margin-bottom: 18px;
+        }
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif; font-size: 48px;
+            font-weight: 500; color: var(--white); letter-spacing: -0.6px; line-height: 1.2;
+            margin-bottom: 18px; text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .hero h1 em { font-style: italic; color: rgba(255,255,255,0.92); font-weight: 500; }
+        .hero p.lede {
+            font-size: 19px; color: rgba(255,255,255,0.9); max-width: 720px; margin: 0 auto;
+            line-height: 1.7;
+        }
+        .hero-meta {
+            margin-top: 28px; font-size: 13px; color: rgba(255,255,255,0.75);
+            letter-spacing: 2px; text-transform: uppercase;
+        }
+        .hero-meta span + span::before { content: '·'; margin: 0 10px; color: rgba(255,255,255,0.6); }
+        .hero-line { text-align: center; color: var(--white); }
+        .hero-line-top {
+            font-size: 18px; letter-spacing: 3px; text-transform: uppercase;
+            color: rgba(255,255,255,0.85); font-weight: 600; margin-bottom: 22px;
+        }
+        .hero-line-top .hero-pipe { margin: 0 16px; color: rgba(255,255,255,0.5); font-weight: 400; }
+        .hero-line-mid {
+            font-family: 'Bodoni Moda', 'Didot', 'Cormorant Garamond', serif;
+            font-size: 38px; font-weight: 400; color: var(--white);
+            letter-spacing: 0.3px; line-height: 1.15;
+            margin: 4px 0 14px; padding: 28px 0 26px;
+            position: relative; display: inline-block;
+            font-feature-settings: "liga" 1, "dlig" 1;
+        }
+        .hero-line-mid::before, .hero-line-mid::after {
+            content: ''; position: absolute; left: 50%; transform: translateX(-50%);
+            width: 100%; max-width: 320px; height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.55) 25%, rgba(255,255,255,0.65) 50%, rgba(255,255,255,0.55) 75%, transparent 100%);
+        }
+        .hero-line-mid::before { top: 0; }
+        .hero-line-mid::after { bottom: 0; }
+        .hero-mid-wrap { text-align: center; margin-bottom: 14px; }
+        .hero-line-bot {
+            font-size: 15px; letter-spacing: 2px; text-transform: uppercase;
+            color: rgba(255,255,255,0.75); font-weight: 600;
+            white-space: nowrap;
+        }
+        .hero-line-bot .hero-pipe { margin: 0 12px; color: rgba(255,255,255,0.5); font-weight: 400; }
+
+        /* --- CONTAINER --- */
+        .container { max-width: 1320px; margin: 0 auto; padding: 56px 48px 8px; }
+
+        /* --- SECTION ANCHORS & HEADERS --- */
+        .section { scroll-margin-top: 32px; margin-bottom: 72px; }
+        .section:last-child { margin-bottom: 0; }
+        .slide-label {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+            color: var(--gold); font-weight: 600; margin-bottom: 18px;
+        }
+        .slide-label::after { content: ''; width: 48px; height: 1px; background: var(--gold-border); }
+        .section-header {
+            display: flex; align-items: baseline; gap: 14px;
+            margin-bottom: 24px; padding-bottom: 14px;
+            border-bottom: 1px solid var(--mist);
+        }
+        .section-header h2 {
+            font-family: 'Cormorant Garamond', serif; font-size: 30px;
+            font-weight: 500; color: var(--charcoal);
+            text-align: left; line-height: 1.25;
+            letter-spacing: 0.2px;
+        }
+        .section-sub {
+            text-align: center; font-size: 18px; color: var(--ash);
+            max-width: 720px; margin: -8px auto 32px; line-height: 1.7;
+        }
+
+        /* --- SITUATION BRIEF --- */
+        .situation {
+            background: var(--white); border: 1px solid var(--mist);
+            border-radius: 14px; padding: 40px 48px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+        }
+        .situation p {
+            font-size: 18.5px; color: var(--ink); line-height: 1.85;
+            margin-bottom: 18px;
+        }
+        .situation p:last-child { margin-bottom: 0; }
+        .situation p strong { color: var(--charcoal); font-weight: 600; }
+        .situation p em { color: var(--gold-dark); font-style: normal; font-weight: 500; }
+        .trajectory {
+            display: grid; grid-template-columns: 1fr auto 1fr auto 1fr;
+            align-items: stretch; gap: 14px; margin-bottom: 22px;
+        }
+        .traj-tile {
+            background: var(--warm-white); border: 1px solid var(--mist);
+            border-radius: 12px; padding: 22px 20px; text-align: left;
+        }
+        .traj-tile.traj-now {
+            background: var(--gold-glow); border-color: var(--gold);
+        }
+        .traj-era {
+            font-size: 12px; text-transform: uppercase; letter-spacing: 2px;
+            color: var(--gold); font-weight: 600; margin-bottom: 8px;
+        }
+        .traj-aum {
+            font-family: 'Cormorant Garamond', serif; font-size: 41px;
+            font-weight: 700; color: var(--charcoal); line-height: 1; margin-bottom: 10px;
+        }
+        .traj-desc {
+            font-size: 14.5px; color: var(--ash); line-height: 1.4;
+        }
+        .traj-arrow {
+            display: flex; align-items: center; color: var(--gold);
+            font-size: 24px; font-weight: 400;
+        }
+
+        /* --- ROLE DEFINITION (mandate + weighted bars) --- */
+        .role-layout {
+            display: grid; grid-template-columns: 0.85fr 1fr; gap: 20px;
+        }
+        @media (max-width: 900px) { .role-layout { grid-template-columns: 1fr; } }
+        .role-card {
+            background: var(--white); border: 1px solid var(--mist);
+            border-radius: 14px; padding: 28px 30px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+        }
+        .role-card h4 {
+            font-family: 'Cormorant Garamond', serif; font-size: 21.5px;
+            font-weight: 600; color: var(--charcoal); margin-bottom: 6px;
+            line-height: 1.3;
+        }
+        .role-card .eyebrow {
+            font-size: 12px; color: var(--gold); letter-spacing: 2px;
+            text-transform: uppercase; font-weight: 600; margin-bottom: 6px;
+        }
+        .role-card .rule {
+            height: 1px; background: var(--gold-border); margin: 14px 0 18px;
+        }
+        .role-card ul { list-style: none; }
+        .role-card li {
+            font-size: 18px; color: var(--ink); line-height: 1.65;
+            padding: 6px 0 6px 16px; position: relative;
+        }
+        .role-card li::before {
+            content: ''; position: absolute; left: 0; top: 13px;
+            width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+        }
+        .role-bars { display: flex; flex-direction: column; gap: 14px; }
+        .role-bar-row {
+            display: grid; grid-template-columns: 1fr 46px;
+            align-items: center; column-gap: 14px; row-gap: 6px;
+        }
+        .role-bar-row .role-bar-label {
+            font-size: 16px; color: var(--slate); font-weight: 600;
+            grid-column: 1 / 2;
+        }
+        .role-bar-row .role-bar-val {
+            font-family: 'Cormorant Garamond', serif; font-size: 20.5px;
+            font-weight: 700; color: var(--charcoal); text-align: right;
+            grid-column: 2 / 3; grid-row: 1 / 3;
+        }
+        .role-bar-row .role-bar-track {
+            height: 10px; background: var(--cream); border-radius: 6px;
+            overflow: hidden; grid-column: 1 / 2;
+        }
+        .role-bar-row .role-bar-fill {
+            height: 100%; border-radius: 6px; background: var(--gold);
+            transition: width 0.7s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        /* --- PARTNERSHIP LOGOS --- */
+        .partner-grid {
+            display: grid; grid-template-columns: repeat(6, 1fr);
+            gap: 1px; background: var(--mist);
+            border: 1px solid var(--mist); border-radius: 12px;
+            overflow: hidden; margin-top: 8px;
+        }
+        .partner-logo {
+            background: var(--white); padding: 32px 16px;
+            text-align: center; font-family: 'Cormorant Garamond', serif;
+            font-size: 20.5px; font-weight: 600; color: var(--charcoal); letter-spacing: 0.6px;
+            transition: background 0.3s; display: flex; align-items: center;
+            justify-content: center; min-height: 84px;
+        }
+        .partner-logo img {
+            max-width: 100%; max-height: 44px; width: auto; height: auto;
+            display: block; opacity: 0.78;
+        }
+        .partner-logo:hover { background: var(--gold-glow); transform: scale(1.04); z-index: 1; }
+        .partner-logo { position: relative; }
+        @media (max-width: 900px) { .partner-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 600px) { .partner-grid { grid-template-columns: repeat(2, 1fr); } }
+
+        /* --- METHODOLOGY --- */
+        .method-wrap {
+            background: var(--white); border: 1px solid var(--mist);
+            border-radius: 16px; padding: 44px 40px 40px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+        }
+        .method-crown {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 14px;
+        }
+        .method-crown .crown-label {
+            font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
+            color: var(--ash); font-weight: 600;
+        }
+        .method-crown .crown-mark {
+            font-family: 'Cormorant Garamond', serif; font-size: 18px;
+            letter-spacing: 0.2em; color: var(--gold); font-weight: 600;
+        }
+        .method-wrap > h3 {
+            font-family: 'Cormorant Garamond', serif; font-size: 33.5px;
+            font-weight: 600; color: var(--charcoal); margin-bottom: 4px;
+            line-height: 1.25;
+        }
+        .method-wrap > h3 em { font-style: italic; color: var(--gold-dark); font-weight: 500; }
+        .method-wrap > .method-sub {
+            font-size: 18px; color: var(--ash); margin-bottom: 28px; line-height: 1.7;
+        }
+        .pillar-grid {
+            display: grid; grid-template-columns: 1fr; gap: 24px;
+        }
+        .pillar {
+            background: var(--warm-white); border: 1px solid var(--mist);
+            border-radius: 12px; padding: 30px 32px 28px;
+            position: relative;
+        }
+        .pillar-num {
+            position: absolute; top: -14px; left: 22px;
+            width: 36px; height: 36px; border-radius: 50%;
+            background: var(--gold); color: var(--white);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 19px;
+            box-shadow: 0 4px 14px rgba(40,86,163,0.35);
+            z-index: 2;
+        }
+        .pillar-head {
+            padding-left: 50px; margin-bottom: 24px;
+        }
+        .pillar h4 {
+            font-family: 'Cormorant Garamond', serif; font-size: 26.5px;
+            font-weight: 600; color: var(--charcoal); margin: 4px 0 10px;
+            line-height: 1.25;
+        }
+        .pillar .pillar-desc {
+            font-size: 18px; color: var(--slate); line-height: 1.65;
+            margin: 0;
+        }
+        .pillar .pillar-desc strong {
+            color: var(--charcoal); font-weight: 600;
+        }
+        .pillar-body {
+            display: grid; grid-template-columns: 1fr; gap: 20px;
+            align-items: start;
+        }
+        .pillar-body.has-visual {
+            grid-template-columns: 300px 1fr; gap: 24px;
+        }
+        @media (max-width: 820px) {
+            .pillar-body.has-visual { grid-template-columns: 1fr; }
+            .pillar-visual { max-width: 360px; margin: 0 auto; }
+        }
+        .pillar-visual {
+            width: 100%; aspect-ratio: 1 / 1; max-height: 320px;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--white); border: 1px solid var(--mist);
+            border-radius: 12px; padding: 18px;
+            color: var(--gold);
+        }
+        .pillar-visual svg {
+            width: 100%; height: 100%; overflow: visible;
+            shape-rendering: geometricPrecision;
+        }
+        .pillar-subs {
+            display: grid; gap: 14px 18px; align-items: start;
+        }
+        .pillar-subs.cols-3 { grid-template-columns: repeat(3, 1fr); }
+        .pillar-subs.cols-2 { grid-template-columns: repeat(2, 1fr); }
+        .pillar-subs.cols-2x2 { grid-template-columns: repeat(2, 1fr); }
+        @media (max-width: 1024px) {
+            .pillar-subs.cols-3 { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 760px) {
+            .pillar-subs.cols-3, .pillar-subs.cols-2, .pillar-subs.cols-2x2 { grid-template-columns: 1fr; }
+        }
+        .pillar-sub-card {
+            background: var(--white); border: 1px solid var(--mist);
+            border-radius: 10px; padding: 18px 20px 18px;
+            align-self: start;
+        }
+        /* PDF-style sub-category pill: dark dot inside a light blue stadium */
+        .pillar-sub-head {
+            display: flex; align-items: center; gap: 10px;
+            padding: 7px 16px 7px 8px; border-radius: 26px;
+            font-size: 16px; font-weight: 600;
+            background: rgba(40,86,163,0.10); color: var(--gold-dark);
+            border: 1px solid var(--gold-border);
+            margin-bottom: 14px; letter-spacing: 0.1px;
+            line-height: 1.2;
+        }
+        .pillar-sub-head::before {
+            content: ''; flex-shrink: 0;
+            width: 18px; height: 18px; border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 0 3px rgba(40,86,163,0.18);
+        }
+        .pillar-sub-card ul { list-style: none; margin: 0; padding: 0; }
+        .pillar-sub-card li {
+            font-size: 17.5px; color: var(--ink); line-height: 1.6;
+            padding: 5px 0 5px 16px; position: relative;
+        }
+        .pillar-sub-card li::before {
+            content: ''; position: absolute; left: 0; top: 13px;
+            width: 6px; height: 6px; border-radius: 50%; background: var(--gold-border);
+        }
+        .capsule-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+        .capsule {
+            display: inline-block; padding: 5px 12px; border-radius: 18px;
+            font-size: 15px; font-weight: 500;
+            background: var(--gold-glow); color: var(--gold-dark);
+            border: 1px solid var(--gold-border);
+        }
+        .capsule.charcoal {
+            background: var(--green); color: var(--white); border-color: var(--green);
+        }
+
+        /* --- ARCHETYPAL PROFILES BLOCK (under firm pool) --- */
+        .archetypes-block { margin-top: 28px; }
+        .archetypes-block-head {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 4px 12px; gap: 12px; flex-wrap: wrap;
+        }
+        .archetypes-block-head h4 {
+            font-family: 'Cormorant Garamond', serif; font-size: 24px;
+            font-weight: 600; color: var(--charcoal);
+        }
+        .archetypes-block-sub {
+            font-size: 16px; color: var(--ash); line-height: 1.65;
+            padding: 0 4px 18px; max-width: 980px;
+        }
+        .credit-tag {
+            display: inline-block; font-size: 11.5px; padding: 1px 7px; border-radius: 4px;
+            background: var(--green); color: var(--white);
+            font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+            margin-right: 6px; vertical-align: middle;
+            position: relative; top: -1px;
+        }
+
+        /* Cycle ring for pillar 2 */
+        .cycle-ring {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+            margin-bottom: 14px;
+        }
+        .cycle-step {
+            position: relative; text-align: center;
+            padding: 12px 8px 10px; border: 1px solid var(--gold-border);
+            border-radius: 10px; background: var(--white);
+        }
+        .cycle-step + .cycle-step::before {
+            content: '\203A'; position: absolute; left: -10px; top: 50%;
+            transform: translateY(-50%); color: var(--gold); font-size: 21.5px; font-weight: 600;
+        }
+        .cycle-num {
+            font-family: 'Cormorant Garamond', serif; font-size: 14.5px; color: var(--gold);
+            font-weight: 700; letter-spacing: 1px; display: block;
+        }
+        .cycle-name {
+            font-size: 14.5px; color: var(--charcoal); font-weight: 600;
+            margin-top: 2px;
+        }
+
+        /* Strategic Business Plan capstone */
+        .capstone {
+            margin-top: 34px; padding-top: 28px;
+            border-top: 1px solid var(--mist);
+        }
+        .capstone-eyebrow {
+            text-align: center;
+            font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
+            color: var(--gold); font-weight: 600; margin-bottom: 8px;
+        }
+        .capstone-title {
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif; font-size: 44px;
+            font-weight: 600; color: var(--charcoal); margin-bottom: 28px;
+            letter-spacing: 0.4px;
+        }
+        .capstone-cols {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+        }
+        @media (max-width: 900px) { .capstone-cols { grid-template-columns: 1fr; } }
+        .capstone-intro {
+            font-size: 17.5px; color: var(--ink); line-height: 1.7;
+            text-align: center; max-width: 880px; margin: 0 auto 22px;
+        }
+        .capstone-col {
+            background: var(--warm-white); border: 1px solid var(--mist);
+            border-radius: 12px; padding: 24px 26px;
+        }
+        .capstone-col h5 {
+            font-family: 'Cormorant Garamond', serif; font-size: 18px;
+            font-weight: 600; color: var(--charcoal); margin-bottom: 14px;
+            padding-bottom: 10px; border-bottom: 1px solid var(--gold-border);
+        }
+        .capstone-col ul { list-style: none; }
+        .capstone-col li {
+            font-size: 15px; color: var(--ink); line-height: 1.6;
+            padding: 5px 0 5px 16px; position: relative;
+        }
+        .capstone-col li::before {
+            content: ''; position: absolute; left: 0; top: 11px;
+            width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+        }
+        .capstone-col li.substituted {
+            color: var(--gold-dark); font-weight: 600;
+        }
+
+        /* --- MARKET & TALENT LANDSCAPE --- */
+        .landscape {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+            margin-bottom: 18px;
+        }
+        .ls-card {
+            background: var(--white); border: 1px solid var(--mist);
+            border-radius: 14px; padding: 28px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+        }
+        .ls-card h4 {
+            font-family: 'Cormorant Garamond', serif; font-size: 21.5px;
+            font-weight: 600; color: var(--charcoal); margin-bottom: 6px;
+        }
+        .ls-card .eyebrow {
+            font-size: 12px; color: var(--gold); letter-spacing: 2px;
+            text-transform: uppercase; font-weight: 600; margin-bottom: 10px;
+        }
+        .comp-table {
+            width: 100%; border-collapse: collapse; margin-top: 12px;
+        }
+        .comp-table th {
+            font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+            color: var(--gold); text-align: left; padding: 10px 10px 10px 0;
+            border-bottom: 1px solid var(--gold-border); font-weight: 600;
+        }
+        .comp-table td {
+            font-size: 18px; color: var(--ink); padding: 10px 10px 10px 0;
+            border-bottom: 1px solid var(--cream);
+        }
+        .comp-table td.insert { color: var(--gold-dark); font-weight: 500; }
+        .rb-row {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 10px;
+        }
+        .rb-col h5 {
+            font-size: 13px; text-transform: uppercase; letter-spacing: 2px;
+            color: var(--gold); font-weight: 600; padding-bottom: 8px;
+            margin-bottom: 10px; border-bottom: 1px solid var(--gold-border);
+        }
+        .rb-col ul { list-style: none; }
+        .rb-col li {
+            font-size: 17.5px; color: var(--ink); line-height: 1.6;
+            padding: 4px 0 4px 14px; position: relative;
+        }
+        .rb-col li::before {
+            content: ''; position: absolute; left: 0; top: 11px;
+            width: 5px; height: 5px; border-radius: 50%; background: var(--gold);
+        }
+        .market-intel {
+            background: var(--white); border: 1px solid var(--mist);
+            border-radius: 14px; padding: 24px 28px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+        }
+        .market-intel h4 {
+            font-family: 'Cormorant Garamond', serif; font-size: 20.5px;
+            font-weight: 600; color: var(--charcoal); margin-bottom: 12px;
+        }
+        .market-intel ul { list-style: none; }
+        .market-intel li {
+            font-size: 18px; color: var(--ink); line-height: 1.7;
+            padding: 6px 0 6px 16px; position: relative;
+        }
+        .market-intel li::before {
+            content: ''; position: absolute; left: 0; top: 14px;
+            width: 6px; height: 6px; border-radius: 50%; background: var(--gold-border);
+        }
+
+        /* --- ADDRESSABLE UNIVERSE --- */
+        .universe-wrap {
+            background: var(--white); border: 1px solid var(--mist);
+            border-radius: 14px; padding: 36px 40px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+        }
+        .universe-head {
+            display: flex; justify-content: space-between; align-items: baseline;
+            margin-bottom: 24px;
+        }
+        .universe-head h4 {
+            font-family: 'Cormorant Garamond', serif; font-size: 24px;
+            font-weight: 600; color: var(--charcoal);
+        }
+        .universe-badge {
+            font-size: 12px; color: var(--gold); font-weight: 600;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            background: var(--gold-glow); border: 1px solid var(--gold-border);
+            padding: 5px 14px; border-radius: 20px;
+        }
+        .kpi-strip {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+            background: var(--mist); border: 1px solid var(--mist);
+            border-radius: 12px; overflow: hidden;
+        }
+        .kpi { background: var(--white); padding: 24px 16px; text-align: center; transition: background 0.3s, transform 0.3s, box-shadow 0.3s; position: relative; }
+        .kpi:hover { background: var(--gold-glow); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(40,86,163,0.12); z-index: 1; }
+        .kpi:hover { background: var(--gold-glow); }
+        .kpi .value {
+            font-family: 'Cormorant Garamond', serif; font-size: 41px;
+            font-weight: 700; color: var(--charcoal); line-height: 1;
+        }
+        .kpi .value.insert { color: var(--gold-dark); font-size: 26.5px; letter-spacing: 1.5px; }
+        .kpi .label {
+            font-size: 17px; text-transform: uppercase; letter-spacing: 1.5px;
+            color: var(--ash); margin-top: 10px; font-weight: 600;
+        }
+        .kpi .sublabel { font-size: 21px; color: var(--gold); margin-top: 4px; }
+
+        /* --- TALENT POOL (COLLAPSIBLE FIRM LIST) --- */
+        .pool-card {
+            background: var(--white); border: 1px solid var(--mist);
+            border-radius: 14px; overflow: visible; margin-top: 18px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+        }
+        .pool-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 22px 32px; cursor: pointer; transition: background 0.2s;
+        }
+        .pool-header:hover { background: rgba(40, 86, 163, 0.03); }
+        .pool-header-left { display: flex; align-items: center; gap: 20px; }
+        .pool-count {
+            font-family: 'Cormorant Garamond', serif; font-size: 41px;
+            font-weight: 600; color: var(--charcoal); line-height: 1;
+        }
+        .pool-label { font-size: 18px; color: var(--charcoal); font-weight: 600; }
+        .pool-sublabel { font-size: 15px; color: var(--ash); margin-top: 3px; line-height: 1.5; }
+        .pool-chevron {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: var(--gold-glow); border: 1px solid var(--gold-border);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 17px; color: var(--gold-dark); transition: all 0.3s;
+            flex-shrink: 0;
+        }
+        .pool-card.open .pool-chevron { transform: rotate(180deg); background: var(--gold); border-color: var(--gold); color: var(--white); }
+        .pool-body { display: none; padding: 18px 32px 28px; border-top: 1px solid var(--mist); }
+        .pool-card.open .pool-body { display: block; }
+        .pool-category { margin-bottom: 18px; }
+        .pool-category:last-child { margin-bottom: 0; }
+        .pool-category-label {
+            font-size: 12px; text-transform: uppercase; letter-spacing: 2px;
+            color: var(--gold); margin-bottom: 12px; padding-bottom: 8px;
+            border-bottom: 1px solid var(--gold-border); font-weight: 600;
+        }
+        .firm-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .firm-tag {
+            display: inline-block; padding: 9px 18px; border-radius: 7px;
+            font-size: 16px; font-weight: 600; background: var(--white);
+            color: var(--charcoal); border: 1px solid var(--mist);
+            transition: all 0.2s; position: relative; cursor: default;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            letter-spacing: 0.2px;
+        }
+        .firm-tag:hover {
+            border-color: var(--gold-border); background: var(--gold-glow);
+            color: var(--gold-dark); box-shadow: 0 2px 8px rgba(40,86,163,0.10);
+        }
+        .firm-tag .firm-tooltip {
+            display: none; position: fixed; background: var(--charcoal); color: var(--white);
+            padding: 12px 18px; border-radius: 8px; font-size: 16px; line-height: 1.5;
+            white-space: normal; width: 300px; text-align: center; z-index: 9999;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15); pointer-events: none;
+            font-weight: 400; letter-spacing: 0; text-transform: none;
+        }
+        .firm-tag .firm-tooltip::after {
+            content: ''; position: absolute; top: 100%; left: 50%;
+            transform: translateX(-50%); border: 6px solid transparent;
+            border-top-color: var(--charcoal);
+        }
+        .firm-tag:hover .firm-tooltip { display: block; }
+
+        /* --- HERO MARQUEE (PARTNER LOGOS TICKER) --- */
+        .hero-marquee {
+            background: var(--white); border-top: 1px solid var(--mist); border-bottom: 1px solid var(--mist);
+            overflow: hidden; position: relative;
+        }
+        .hero-marquee-inner { max-width: 1320px; margin: 0 auto; padding: 36px 48px; position: relative; }
+        .hero-marquee-eyebrow {
+            font-size: 14px; letter-spacing: 2.8px; text-transform: uppercase;
+            color: var(--ash); font-weight: 600; margin-bottom: 22px; text-align: center;
+        }
+        .hero-marquee-viewport {
+            overflow: hidden; position: relative;
+            mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+            -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+        }
+        .hero-marquee-track {
+            display: flex; gap: 88px; width: max-content; align-items: center;
+            animation: scroll-x 24s linear infinite;
+        }
+        .hero-marquee-item {
+            flex: 0 0 auto; height: 60px; display: flex; align-items: center; justify-content: center;
+            filter: grayscale(1); opacity: 0.6; transition: opacity 0.3s, filter 0.3s;
+        }
+        .hero-marquee-item:hover { filter: grayscale(0); opacity: 1; }
+        .hero-marquee-item img { max-height: 60px; max-width: 200px; object-fit: contain; }
+        .hero-marquee-item .logo-fallback {
+            font-family: 'Cormorant Garamond', serif; font-size: 26px; color: var(--charcoal);
+            font-weight: 600; letter-spacing: 0.5px; white-space: nowrap;
+        }
+        @keyframes scroll-x {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .hero-marquee-track { animation: none; }
+        }
+
+        /* --- SECTION I: LANDSCAPE THESIS + OBSERVATIONS --- */
+        .landscape-thesis {
+            background: linear-gradient(135deg, var(--gold-glow) 0%, rgba(40,86,163,0.02) 100%);
+            border: 1px solid var(--gold-border); border-radius: 12px;
+            padding: 22px 28px; margin-bottom: 22px;
+            display: flex; gap: 20px; align-items: flex-start;
+        }
+        .landscape-thesis .lt-mark {
+            font-family: 'Cormorant Garamond', serif; font-size: 36px; color: var(--gold);
+            font-style: italic; font-weight: 500; line-height: 1; flex-shrink: 0;
+        }
+        .landscape-thesis p {
+            font-size: 18px; line-height: 1.7; color: var(--ink); margin: 0;
+        }
+        .landscape-thesis p strong { color: var(--gold-dark); font-weight: 600; }
+        .obs-row {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 22px;
+        }
+        .obs-card {
+            background: var(--white); border: 1px solid var(--mist); border-radius: 12px;
+            padding: 20px 22px; transition: box-shadow 0.25s, border-color 0.25s, transform 0.25s;
+            position: relative; overflow: hidden;
+        }
+        .obs-card:hover { box-shadow: 0 10px 30px rgba(40,86,163,0.08); border-color: var(--gold-border); transform: translateY(-2px); }
+        .obs-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--gold);
+        }
+        .obs-card .obs-eyebrow {
+            font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+            color: var(--gold); font-weight: 600; margin-bottom: 8px;
+        }
+        .obs-card h5 {
+            font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 600;
+            color: var(--charcoal); line-height: 1.35; margin-bottom: 8px;
+        }
+        .obs-card p { font-size: 16px; line-height: 1.6; color: var(--slate); }
+
+        /* --- SECTION II: DIMENSION CAPSULES UNDER BARS + YEAR-ONE BLOCK --- */
+        .role-bar-capsules {
+            display: flex; flex-wrap: wrap; gap: 5px; grid-column: 1 / -1; margin-top: 2px; margin-bottom: 6px;
+        }
+        .role-bar-capsule {
+            display: inline-block; padding: 3px 10px; border-radius: 20px;
+            font-size: 12.5px; font-weight: 500; background: var(--cream);
+            color: var(--slate); border: 1px solid var(--mist); letter-spacing: 0.2px;
+        }
+        .role-bars-footer {
+            margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--mist);
+            font-size: 13px; color: var(--ash); letter-spacing: 0.8px; text-align: right; font-weight: 500;
+        }
+        .year-one-block {
+            margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--mist);
+        }
+        .year-one-block h5 {
+            font-size: 12px; text-transform: uppercase; letter-spacing: 2px;
+            color: var(--gold); margin-bottom: 10px; font-weight: 600;
+        }
+        .year-one-block ul {
+            list-style: none; padding: 0; margin: 0;
+            display: flex; flex-direction: column; gap: 10px;
+        }
+        .year-one-block li {
+            position: relative; padding-left: 22px; font-size: 16px; line-height: 1.55; color: var(--ink);
+        }
+        .year-one-block li::before {
+            content: '→'; position: absolute; left: 0; top: 0; color: var(--gold); font-weight: 600;
+        }
+
+        /* --- SECTION V: CASE STUDIES & TRACK RECORD --- */
+        .cs-stat-strip {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+            background: var(--mist); border: 1px solid var(--mist);
+            border-radius: 12px; overflow: hidden; margin-bottom: 36px;
+        }
+        .cs-stat-strip-2x2 {
+            grid-template-columns: repeat(2, 1fr);
+            border-radius: 0; border-left: 0; border-right: 0;
+            margin-bottom: 0;
+        }
+        .hires-card {
+            background: var(--white); border: 1px solid var(--mist);
+            border-radius: 14px; overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+        }
+        .hires-card-head {
+            padding: 24px 32px;
+        }
+        .hires-card-head h3 {
+            font-family: 'Cormorant Garamond', serif; font-size: 26.5px;
+            font-weight: 600; color: var(--charcoal); margin: 0;
+        }
+        .hires-card .hires-table { margin-top: 0; }
+        .cs-stat {
+            background: var(--white); padding: 26px 18px; text-align: center;
+            transition: background 0.3s, transform 0.3s; position: relative;
+        }
+        .cs-stat:hover { background: var(--gold-glow); transform: translateY(-2px); }
+        .cs-stat .cs-stat-value {
+            font-family: 'Cormorant Garamond', serif; font-size: 43px; font-weight: 700;
+            color: var(--charcoal); line-height: 1;
+        }
+        .cs-stat .cs-stat-label {
+            font-size: 20px; text-transform: uppercase; letter-spacing: 1.5px;
+            color: var(--ash); margin-top: 12px; font-weight: 600;
+        }
+        .cs-stat .cs-stat-sub { font-size: 22px; color: var(--gold); margin-top: 6px; }
+
+        .hires-table-wrap {
+            margin-top: 40px; background: var(--white); border: 1px solid var(--mist);
+            border-radius: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+        }
+        .hires-table-head {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 22px 28px; border-bottom: 1px solid var(--mist);
+        }
+        .hires-table-head h4 {
+            font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; color: var(--charcoal);
+        }
+        .hires-table-head .hires-badge {
+            font-size: 12px; color: var(--gold); font-weight: 600;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            background: var(--gold-glow); border: 1px solid var(--gold-border);
+            padding: 5px 14px; border-radius: 20px;
+        }
+        .hires-table { width: 100%; border-collapse: collapse; }
+        .hires-table thead th {
+            text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px;
+            color: var(--ash); font-weight: 600; padding: 14px 28px; background: var(--warm-white);
+            border-bottom: 1px solid var(--mist);
+        }
+        .hires-table thead th:nth-child(3), .hires-table thead th:nth-child(4) { text-align: center; }
+        .hires-table tbody td {
+            padding: 16px 28px; border-bottom: 1px solid var(--mist);
+            font-size: 16px; color: var(--ink); vertical-align: middle;
+        }
+        .hires-table tbody tr:last-child td { border-bottom: none; }
+        .hires-table tbody tr { transition: background 0.2s; }
+        .hires-table tbody tr:hover { background: rgba(40,86,163,0.025); }
+        .hires-table .hires-role { font-weight: 600; color: var(--charcoal); }
+        .hires-table .hires-outcome { font-size: 14.5px; color: var(--ash); margin-top: 3px; line-height: 1.5; font-weight: 400; }
+        .hires-table .hires-note { font-size: 14px; color: var(--gold-dark); margin-top: 5px; line-height: 1.5; font-style: italic; font-weight: 500; }
+        .hires-table .hires-exp { color: var(--ash); font-weight: 500; font-size: 14.5px; }
+        .hires-table .hires-firm { font-size: 15.5px; color: var(--slate); }
+        .hires-table .hires-prospects { text-align: center; font-family: 'Inter', sans-serif; font-size: 19px; font-weight: 700; color: var(--charcoal); letter-spacing: -0.2px; }
+        .weeks-bar {
+            display: flex; align-items: center; gap: 10px; justify-content: flex-end;
+        }
+        .weeks-bar-track {
+            flex: 1; max-width: 110px; height: 6px; background: var(--cream);
+            border-radius: 3px; overflow: hidden;
+        }
+        .weeks-bar-fill {
+            display: block; height: 100%;
+            background: linear-gradient(90deg, var(--gold-light), var(--gold));
+            border-radius: 3px; transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .weeks-bar-label { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; color: var(--gold-dark); min-width: 48px; text-align: right; letter-spacing: -0.1px; }
+
+        /* --- SECTION VII: PARTNERSHIP APPROACH --- */
+        .partner-approach-row {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 28px;
+        }
+        .partner-approach-card {
+            background: var(--white); border: 1px solid var(--mist); border-radius: 12px;
+            padding: 22px 24px; transition: box-shadow 0.25s, border-color 0.25s, transform 0.25s;
+            position: relative;
+        }
+        .partner-approach-card:hover {
+            box-shadow: 0 10px 30px rgba(40,86,163,0.08);
+            border-color: var(--gold-border); transform: translateY(-2px);
+        }
+        .partner-approach-card .pac-icon {
+            width: 38px; height: 38px; border-radius: 50%;
+            background: var(--gold-glow); border: 1px solid var(--gold-border);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--gold-dark); font-size: 19px; font-weight: 600;
+            margin-bottom: 14px;
+        }
+        .partner-approach-card h5 {
+            font-family: 'Cormorant Garamond', serif; font-size: 20.5px; font-weight: 600;
+            color: var(--charcoal); margin-bottom: 8px;
+        }
+        .partner-approach-card p { font-size: 15.5px; line-height: 1.6; color: var(--slate); }
+
+        .partner-grid-heading {
+            display: flex; justify-content: space-between; align-items: baseline;
+            margin-bottom: 18px;
+        }
+        .partner-grid-heading h4 {
+            font-family: 'Cormorant Garamond', serif; font-size: 21.5px; font-weight: 600; color: var(--charcoal);
+        }
+        .partner-grid-heading .pg-note {
+            font-size: 13px; color: var(--ash); letter-spacing: 0.5px;
+        }
+        .partner-logo-fallback {
+            font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--charcoal);
+            font-weight: 600; letter-spacing: 0.3px; text-align: center; line-height: 1.3;
+        }
+        /* Enhance existing .partner-logo with image-friendly defaults + greyscale hover */
+        .partner-logo img {
+            max-height: 42px; max-width: 140px; object-fit: contain;
+            filter: grayscale(1); opacity: 0.7; transition: filter 0.3s, opacity 0.3s;
+        }
+        .partner-logo:hover img { filter: grayscale(0); opacity: 1; }
+
+        /* --- FINAL CTA (replaces section VIII's next-steps trailing block) --- */
+        .final-cta {
+            margin-top: 72px; padding: 44px 48px;
+            background: linear-gradient(135deg, var(--white) 0%, var(--gold-glow) 100%);
+            border: 1px solid var(--gold-border); border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(40,86,163,0.06);
+            text-align: center;
+        }
+        .final-cta h4 {
+            font-family: 'Cormorant Garamond', serif; font-size: 29px; color: var(--charcoal);
+            font-weight: 500; margin-bottom: 14px;
+        }
+        .final-cta h4 em { color: var(--gold-dark); font-style: italic; }
+        .final-cta p {
+            font-size: 17px; line-height: 1.7; color: var(--ink);
+            max-width: 780px; margin: 0 auto;
+        }
+
+        /* --- HIRE ROW EXPANSION (in Section II hires table) --- */
+        .hires-table tbody tr.hire-row { cursor: pointer; }
+        .hires-table tbody tr.hire-row:hover { background: rgba(40,86,163,0.035); }
+        .hires-table .hire-chevron {
+            width: 26px; height: 26px; border-radius: 50%;
+            background: var(--gold-glow); border: 1px solid var(--gold-border);
+            display: inline-flex; align-items: center; justify-content: center;
+            color: var(--gold-dark); font-size: 13px; transition: transform 0.3s, background 0.2s;
+        }
+        .hires-table tr.hire-row.open .hire-chevron {
+            transform: rotate(180deg); background: var(--gold); border-color: var(--gold); color: var(--white);
+        }
+        .hires-table tr.hire-row.open { background: rgba(40,86,163,0.04); }
+        .hires-table tr.hire-row.open td { border-bottom: none; }
+        .hires-table tr.hire-detail { display: none; }
+        .hires-table tr.hire-detail.open { display: table-row; }
+        .hires-table tr.hire-detail td {
+            background: var(--warm-white); padding: 24px 28px 28px;
+            border-bottom: 1px solid var(--mist);
+        }
+        .hire-detail-grid {
+            display: grid; grid-template-columns: 1.3fr 1fr; gap: 36px;
+        }
+        .hire-composite {
+            display: inline-flex; align-items: center; gap: 10px;
+            margin-bottom: 14px;
+        }
+        .hire-composite .comp-val {
+            font-family: 'Cormorant Garamond', serif; font-size: 31px; font-weight: 700;
+            color: var(--charcoal); line-height: 1;
+        }
+        .hire-composite .comp-sub {
+            font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+            color: var(--ash); font-weight: 600;
+        }
+        .hire-tier-pill {
+            display: inline-block; padding: 4px 12px; border-radius: 20px;
+            font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+        }
+        .hire-tier-pill.tier-A { background: rgba(26,155,88,0.12); color: #147A45; border: 1px solid rgba(26,155,88,0.3); }
+        .hire-tier-pill.tier-B { background: var(--gold-glow); color: var(--gold-dark); border: 1px solid var(--gold-border); }
+        .hire-tier-pill.tier-C { background: rgba(194,107,58,0.12); color: #8F4A20; border: 1px solid rgba(194,107,58,0.3); }
+        .hire-scores { display: flex; flex-direction: column; gap: 10px; }
+        .hire-score-row {
+            display: grid; grid-template-columns: 1fr 40px 36px;
+            align-items: center; column-gap: 12px; row-gap: 4px;
+        }
+        .hire-score-row .hsr-label {
+            font-size: 14.5px; color: var(--slate); font-weight: 600; grid-column: 1 / 2;
+        }
+        .hire-score-row .hsr-val {
+            font-family: 'Cormorant Garamond', serif; font-size: 18px;
+            font-weight: 700; color: var(--charcoal); text-align: right;
+            grid-column: 2 / 3; grid-row: 1 / 3;
+        }
+        .hire-score-row .hsr-weight {
+            font-size: 12px; color: var(--gold); letter-spacing: 0.5px;
+            text-align: right; font-weight: 600;
+            grid-column: 3 / 4; grid-row: 1 / 3;
+        }
+        .hire-score-row .hsr-track {
+            height: 7px; background: var(--cream); border-radius: 4px;
+            overflow: hidden; grid-column: 1 / 2;
+        }
+        .hire-score-row .hsr-fill {
+            height: 100%; border-radius: 4px;
+            transition: width 0.7s cubic-bezier(0.4,0,0.2,1);
+        }
+        .hire-signals { padding-top: 2px; }
+        .hire-signals-head {
+            font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+            color: var(--gold); font-weight: 600; margin-bottom: 12px;
+            padding-bottom: 8px; border-bottom: 1px solid var(--gold-border);
+        }
+        .hire-signals ul { list-style: none; padding: 0; margin: 0; }
+        .hire-signals li {
+            position: relative; padding-left: 18px;
+            font-size: 16px; line-height: 1.6; color: var(--ink);
+            margin-bottom: 12px;
+        }
+        .hire-signals li:last-child { margin-bottom: 0; }
+        .hire-signals li::before {
+            content: '•'; position: absolute; left: 2px; top: 0;
+            color: var(--gold); font-weight: 700; font-size: 19px;
+        }
+        @media (max-width: 900px) {
+            .hire-detail-grid { grid-template-columns: 1fr; gap: 24px; }
+        }
+
+        /* --- ARCHETYPE CARDS --- */
+        .archetype-grid { display: flex; flex-direction: column; gap: 14px; }
+        .arch-card {
+            background: var(--white); border: 1px solid var(--mist);
+            border-radius: 14px; overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            transition: box-shadow 0.3s, border-color 0.3s;
+        }
+        .arch-card { transform: translateZ(0); }
+        .arch-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.10); border-color: var(--gold-border); transform: translateY(-2px); }
+        .arch-header {
+            display: grid; grid-template-columns: 44px 1fr auto 36px;
+            align-items: center; gap: 16px; padding: 22px 28px;
+            cursor: pointer; transition: background 0.15s, border-color 0.2s;
+            border-bottom: 1px solid transparent;
+        }
+        .arch-header:hover { background: rgba(40, 86, 163, 0.03); }
+        .arch-card.open .arch-header { border-bottom-color: var(--mist); }
+        .arch-letter {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: var(--green-light); color: var(--green);
+            border: 1px solid rgba(26,155,88,0.2);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Cormorant Garamond', serif; font-size: 20.5px; font-weight: 600;
+        }
+        .arch-title-row { min-width: 0; }
+        .arch-title {
+            font-family: 'Cormorant Garamond', serif; font-size: 24px;
+            font-weight: 600; color: var(--charcoal); line-height: 1.25;
+        }
+        .arch-firm {
+            font-size: 17.5px; color: var(--ash); margin-top: 3px; font-weight: 500;
+        }
+        .arch-source {
+            font-size: 13px; color: var(--gold-dark); margin-top: 5px;
+            letter-spacing: 0.5px; font-weight: 500;
+        }
+        .arch-score {
+            text-align: right;
+        }
+        .arch-score .big {
+            font-family: 'Inter', sans-serif; font-size: 30px;
+            font-weight: 700; color: var(--charcoal); line-height: 1;
+            letter-spacing: -0.5px;
+        }
+        .tier-pill {
+            display: inline-block; padding: 3px 12px; border-radius: 20px;
+            font-size: 12px; font-weight: 600; letter-spacing: 1px; margin-top: 4px;
+        }
+        .tier-A { background: var(--green-light); color: var(--green); }
+        .tier-B { background: var(--gold-glow); color: var(--gold-dark); }
+        .arch-chevron {
+            width: 34px; height: 34px; border-radius: 50%;
+            background: var(--cream); border: 1px solid var(--mist);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 15.5px; color: var(--gold-dark); transition: all 0.3s;
+        }
+        .arch-card.open .arch-chevron {
+            transform: rotate(180deg); background: var(--gold);
+            border-color: var(--gold); color: var(--white);
+        }
+        .arch-body {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            background: var(--warm-white);
+        }
+        .arch-card.open .arch-body { max-height: 1200px; padding: 28px 32px; }
+        .arch-body-grid {
+            display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px;
+            align-items: stretch;
+        }
+        .score-bars {
+            display: flex; flex-direction: column;
+            justify-content: space-between; gap: 10px;
+        }
+        .bar-row {
+            display: grid; grid-template-columns: 220px 1fr 52px;
+            align-items: center; gap: 10px;
+        }
+        .bar-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px; color: var(--slate); font-weight: 600;
+            letter-spacing: 0.1px;
+        }
+        .bar-track {
+            height: 10px; background: var(--cream); border-radius: 6px;
+            overflow: hidden; position: relative;
+        }
+        .bar-fill {
+            height: 100%; border-radius: 6px;
+            transition: width 0.7s cubic-bezier(0.4,0,0.2,1);
+        }
+        .bar-val {
+            font-family: 'Inter', sans-serif; font-size: 19px;
+            font-weight: 700; color: var(--charcoal); text-align: right;
+            letter-spacing: -0.2px;
+        }
+        .bar-weight {
+            font-size: 12px; color: var(--gold); letter-spacing: 0.5px;
+            text-align: right; font-weight: 600;
+        }
+        .signals-block h5 {
+            font-size: 12px; text-transform: uppercase; letter-spacing: 2px;
+            color: var(--gold); margin-bottom: 12px; padding-bottom: 8px;
+            border-bottom: 1px solid var(--gold-border); font-weight: 600;
+        }
+        .signals-block ul { list-style: none; }
+        .signals-block li {
+            font-size: 18px; color: var(--ink); line-height: 1.65;
+            padding: 6px 0 6px 16px; position: relative;
+        }
+        .signals-block li::before {
+            content: ''; position: absolute; left: 0; top: 13px;
+            width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+        }
+        .facts-block .facts-list { list-style: none; padding: 0; margin: 0; }
+        .facts-block .facts-list li {
+            font-size: 17px; color: var(--ink); line-height: 1.55;
+            padding: 8px 0 8px 0; position: relative; border-bottom: 1px solid var(--mist);
+        }
+        .facts-block .facts-list li::before { display: none; }
+        .facts-block .facts-list li:last-child { border-bottom: none; }
+        .facts-block .fact-label {
+            font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+            color: var(--gold); font-weight: 600; display: block; margin-bottom: 4px;
+        }
+        .facts-block .fact-value { color: var(--charcoal); font-weight: 500; }
+
+        /* --- TIMELINE + FUNNEL --- */
+        .tf-section {
+            background: var(--white); border: 1px solid var(--mist);
+            border-radius: 16px; padding: 40px 40px 32px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+        }
+        .tf-header {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 28px;
+        }
+        .tf-header h4 {
+            font-family: 'Cormorant Garamond', serif; font-size: 26.5px;
+            font-weight: 600; color: var(--charcoal);
+        }
+        .tf-badge {
+            font-size: 13px; color: var(--gold); font-weight: 600;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            background: var(--gold-glow); border: 1px solid var(--gold-border);
+            padding: 6px 16px; border-radius: 20px;
+        }
+        .tf-rows { position: relative; padding: 0; }
+        .tf-rows::before {
+            content: ''; position: absolute; left: 29px; top: 36px; bottom: 80px;
+            width: 3px; border-radius: 2px;
+            background: linear-gradient(180deg, var(--gold) 0%, var(--gold-dark) 70%, var(--green) 100%);
+            z-index: 0;
+        }
+        .tf-row {
+            display: grid; grid-template-columns: 200px 1fr;
+            gap: 0 24px; padding: 20px 0; position: relative; z-index: 1;
+        }
+        .tf-row + .tf-row { border-top: 1px solid var(--cream); }
+        .tf-timeline-col {
+            display: flex; align-items: flex-start; gap: 14px;
+            padding-left: 4px; padding-top: 4px;
+        }
+        .tf-dot {
+            width: 52px; height: 52px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700;
+            color: var(--white); background: var(--gold);
+            box-shadow: 0 4px 20px rgba(40, 86, 163, 0.4);
+            flex-shrink: 0; position: relative; z-index: 2;
+            letter-spacing: -0.5px;
+        }
+        .tf-row:last-child .tf-dot {
+            background: var(--green); box-shadow: 0 4px 20px rgba(26, 155, 88, 0.4);
+        }
+        .tf-phase-info { min-width: 0; }
+        .tf-phase-name {
+            font-family: 'Cormorant Garamond', serif; font-size: 20.5px;
+            font-weight: 600; color: var(--charcoal); line-height: 1.2;
+        }
+        .tf-phase-weeks {
+            font-size: 12px; color: var(--gold); font-weight: 600;
+            letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px;
+        }
+        .tf-funnel-col { display: flex; flex-direction: column; gap: 8px; }
+        .tf-bar {
+            min-height: 50px; border-radius: 10px; display: flex;
+            align-items: center; padding: 10px 20px; gap: 12px;
+            color: var(--white); position: relative; overflow: hidden;
+            white-space: normal; box-sizing: border-box; max-width: 100%;
+            clip-path: inset(0 100% 0 0);
+            transform-origin: left center;
+        }
+        .tf-bar::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+        }
+        .tf-row.visible .tf-bar {
+            clip-path: inset(0 0 0 0);
+            transition: clip-path 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .tf-bar-num {
+            font-family: 'Inter', sans-serif; font-size: 22px; font-weight: 700;
+            letter-spacing: -0.3px; white-space: nowrap; flex-shrink: 0;
+        }
+        .tf-bar-text { font-size: 17.5px; font-weight: 400; opacity: 0.92; }
+        .tf-row:nth-child(1) .tf-bar { width: 100%; background: linear-gradient(135deg, #2856A3, #4A78C4); box-shadow: 0 4px 20px rgba(40,86,163,0.3); }
+        .tf-row:nth-child(2) .tf-bar { width: 78%; background: linear-gradient(135deg, #1F4A95, #2856A3); box-shadow: 0 4px 20px rgba(31,74,149,0.3); }
+        .tf-row:nth-child(3) .tf-bar { width: 52%; background: linear-gradient(135deg, #1C4380, #1F4A95); box-shadow: 0 4px 20px rgba(28,67,128,0.3); }
+        .tf-row:nth-child(4) .tf-bar { width: 36%; background: linear-gradient(135deg, #15336B, #1C4380); box-shadow: 0 4px 20px rgba(21,51,107,0.3); }
+        .tf-row:nth-child(5) .tf-bar {
+            width: 22%; min-width: 120px;
+            background: linear-gradient(135deg, #1A9B58, #35B069, #1A9B58);
+            background-size: 200% 100%;
+            animation: shimmer 3.6s linear infinite;
+            box-shadow: 0 4px 20px rgba(26,155,88,0.3);
+        }
+        .tf-milestones { list-style: none; padding: 0; margin: 0; }
+        .tf-milestones li {
+            font-size: 17.5px; color: var(--ash); line-height: 1.65;
+            padding: 3px 0 3px 18px; position: relative;
+        }
+        .tf-milestones li::before {
+            content: ''; position: absolute; left: 0; top: 11px;
+            width: 6px; height: 6px; border-radius: 50%; background: var(--gold-border);
+        }
+        .tf-row:last-child .tf-milestones li::before { background: rgba(26, 155, 88, 0.35); }
+        .tf-milestones li strong { color: var(--charcoal); font-weight: 600; }
+
+        /* --- TRACK RECORD + TEAM --- */
+        .track-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+        }
+        .track-card {
+            background: var(--white); border: 1px solid var(--mist);
+            border-radius: 14px; padding: 24px 26px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+        }
+        .track-card .tc-vintage {
+            font-size: 12px; color: var(--gold); letter-spacing: 2px;
+            text-transform: uppercase; font-weight: 600; margin-bottom: 8px;
+        }
+        .track-card .tc-firm {
+            font-family: 'Cormorant Garamond', serif; font-size: 20.5px;
+            font-weight: 600; color: var(--charcoal); margin-bottom: 4px;
+            line-height: 1.3;
+        }
+        .track-card .tc-role {
+            font-size: 15.5px; color: var(--ash); font-weight: 500; margin-bottom: 14px;
+        }
+        .track-card .tc-outcome {
+            font-size: 17.5px; color: var(--ink); line-height: 1.65;
+            padding-top: 14px; border-top: 1px solid var(--gold-border);
+        }
+
+        .team-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+            margin-top: 28px;
+        }
+        .team-card {
+            background: var(--warm-white); border: 1px solid var(--mist);
+            border-radius: 14px; padding: 24px 26px;
+        }
+        .team-card .tm-name {
+            font-family: 'Cormorant Garamond', serif; font-size: 21.5px;
+            font-weight: 600; color: var(--charcoal);
+        }
+        .team-card .tm-title {
+            font-size: 14.5px; color: var(--gold); letter-spacing: 1.5px;
+            text-transform: uppercase; font-weight: 600; margin-top: 3px; margin-bottom: 12px;
+        }
+        .team-card .tm-bio {
+            font-size: 17.5px; color: var(--ink); line-height: 1.65;
+        }
+        .next-steps {
+            background: var(--charcoal); color: var(--white);
+            border-radius: 14px; padding: 32px 40px; margin-top: 28px;
+        }
+        .next-steps h4 {
+            font-family: 'Cormorant Garamond', serif; font-size: 24px;
+            font-weight: 600; margin-bottom: 10px;
+            color: var(--white);
+        }
+        .next-steps h4 em { color: var(--gold); font-style: normal; }
+        .next-steps p { font-size: 18px; color: rgba(255,255,255,0.82); line-height: 1.75; }
+
+        /* --- FOOTER --- */
+        .footer { background: var(--charcoal); padding: 48px; text-align: center; }
+        .footer-inner { max-width: 1320px; margin: 0 auto; }
+        .footer .logo-line {
+            font-family: 'Cormorant Garamond', serif; font-size: 19px;
+            color: var(--gold); margin-bottom: 8px; letter-spacing: 0.1em;
+        }
+        .footer .fine-print { font-size: 13px; color: var(--silver); line-height: 1.8; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .pillar-grid { grid-template-columns: 1fr; }
+            .three-col { grid-template-columns: 1fr; }
+            .landscape { grid-template-columns: 1fr; }
+            .kpi-strip { grid-template-columns: repeat(3, 1fr); }
+            .arch-body-grid { grid-template-columns: 1fr; }
+            .track-grid, .team-grid { grid-template-columns: 1fr; }
+            .capstone-cols { grid-template-columns: 1fr; }
+            .trajectory { grid-template-columns: 1fr; }
+            .traj-arrow { display: none; }
+            .hero-prior-firms { font-size: 22px; }
+            .obs-row { grid-template-columns: 1fr; }
+            .partner-approach-row { grid-template-columns: 1fr; }
+            .cs-stat-strip { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .container { padding: 28px 20px; }
+            .masthead-inner { padding: 20px; flex-direction: column; gap: 12px; text-align: center; }
+            .masthead-right { text-align: center; }
+            .hero { padding: 36px 0; }
+            .hero-inner { padding: 0 20px; }
+            .hero h1 { font-size: 33.5px; }
+            .kpi-strip { grid-template-columns: 1fr 1fr; }
+            .arch-header { grid-template-columns: 44px 1fr 36px; gap: 12px; padding: 16px 18px; }
+            .arch-score { display: none; }
+            .bar-row { grid-template-columns: 140px 1fr 40px; }
+            .bar-weight { display: none; }
+            .tf-row { grid-template-columns: 1fr; gap: 12px; }
+            .tf-timeline-col { justify-content: flex-start; }
+            .tf-bar { width: 100% !important; max-width: 400px; white-space: normal; height: auto; padding: 10px 16px; }
+            .tf-rows::before { display: none; }
+            .cycle-ring { grid-template-columns: 1fr 1fr; }
+            .cycle-step + .cycle-step::before { display: none; }
+            .situation { padding: 24px; }
+            .method-wrap { padding: 28px 20px; }
+            .universe-wrap { padding: 24px; }
+            .landscape-thesis { flex-direction: column; gap: 8px; padding: 18px 20px; }
+            .cs-stat-strip { grid-template-columns: 1fr 1fr; }
+            .cs-stat .cs-stat-value { font-size: 33.5px; }
+            .hires-table thead { display: none; }
+            .hires-table tbody td { display: block; padding: 10px 20px; border: none; }
+            .hires-table tbody tr.hire-row { display: block; padding: 16px 0 8px; border-bottom: 1px solid var(--mist); }
+            .hires-table tbody tr.hire-row:last-child { border-bottom: none; }
+            .hires-table tbody tr.hire-detail { display: none; }
+            .hires-table tbody tr.hire-detail.open { display: block; background: var(--warm-white); padding: 8px 0 16px; }
+            .hires-table tbody tr.hire-detail.open td { padding: 16px 20px; display: block; }
+            .hires-table .hires-prospects { text-align: left; }
+            .weeks-bar { justify-content: flex-start; }
+            .hire-detail-grid { grid-template-columns: 1fr; gap: 20px; }
+            .final-cta { padding: 32px 24px; }
+            .final-cta h4 { font-size: 24px; }
+            .hero-marquee-inner { padding: 18px 20px; }
+        }
+
+        @media print {
+            .arch-card .arch-body { max-height: 4000px !important; padding: 24px 28px !important; }
+            .arch-card .arch-chevron { display: none; }
+            .tf-bar { clip-path: none !important; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Masthead -->
+<div class="masthead">
+    <div class="masthead-inner">
+        <div class="brand">
+            <img src="goldsmith-logo.png" alt="Goldsmith & Co">
+            <span class="brand-divider" data-show-when="meta.client_logo">&times;</span>
+            <img src="" alt="" class="tp-mark" data-client-logo data-show-when="meta.client_logo" hidden>
+        </div>
+        <div class="masthead-right">
+            <div class="confidential">Confidential</div>
+            Prepared for <span data-bind="meta.client">[CLIENT]</span><br>
+            <span data-bind="meta.prepared_date">[DATE]</span>
+        </div>
+    </div>
+</div>
+<div class="gold-rule"></div>
+
+<!-- Hero -->
+<div class="hero">
+    <div class="hero-inner">
+        <div class="hero-line hero-line-top">
+            <span data-bind="meta.role">[ROLE]</span> Project
+        </div>
+        <div class="hero-mid-wrap"><div class="hero-line hero-line-mid" data-bind="meta.project_codename">[PROJECT_CODENAME]</div></div>
+        <div class="hero-line hero-line-bot">
+            <span>Demonstrated Success</span><span class="hero-pipe">|</span><span>Target Pools</span><span class="hero-pipe">|</span><span>Assessment</span><span class="hero-pipe">|</span><span>Outcomes</span><span class="hero-pipe">|</span><span>Search Phases</span>
+        </div>
+    </div>
+</div>
+
+<!-- Hero marquee: selected credit-platform partnerships -->
+<div class="hero-marquee">
+    <div class="hero-marquee-inner">
+        <div class="hero-marquee-eyebrow">Selected credit-platform partnerships</div>
+        <div class="hero-marquee-viewport">
+            <div class="hero-marquee-track" id="heroMarqueeTrack"></div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- I. Demonstrated Success: Credit Capital Formation Projects -->
+    <section id="archetypes" class="section">
+        <div class="section-header"><h2>I. Demonstrated Success: Credit Capital Formation Projects</h2></div>
+        <div class="hires-card">
+            <div class="hires-card-head">
+                <h3>Credit Capital Formation Hires</h3>
+            </div>
+            <div class="cs-stat-strip cs-stat-strip-2x2" id="caseStatStrip"></div>
+            <table class="hires-table">
+                <thead>
+                    <tr>
+                        <th style="width:38%">Role</th>
+                        <th style="width:30%">Firm Description</th>
+                        <th style="width:14%">Prospects Screened</th>
+                        <th style="width:18%">Time to Close</th>
+                    </tr>
+                </thead>
+                <tbody id="hiresTableBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- II. Target Pools: Credit Hedge Funds, Alternative Credit & Diversified Alternatives Managers -->
+    <section id="universe" class="section">
+        <div class="section-header"><h2>II. Target Pools: Credit Hedge Funds, Alternative Credit &amp; Diversified Alternatives Managers</h2></div>
+        <div class="universe-wrap">
+            <div class="kpi-strip" id="universeStrip"></div>
+        </div>
+        <div id="talentPoolSection"></div>
+    </section>
+
+    <!-- III. Assessment Methodology -->
+    <section id="methodology" class="section">
+        <div class="section-header"><h2>III. Candidate Assessment Process</h2></div>
+        <div class="method-wrap">
+            <div class="pillar-grid">
+
+                <!-- Pillar 1 -->
+                <div class="pillar">
+                    <div class="pillar-num">1</div>
+                    <div class="pillar-head">
+                        <h4>Capital Formation Track Record &amp; Measuring Success</h4>
+                        <p class="pillar-desc"><strong>Proven ability to raise institutional capital across cycles, varying market conditions, asset classes, and geographies.</strong> Interrogatories may include&hellip;</p>
+                    </div>
+                    <div class="pillar-body">
+                        <div class="pillar-subs cols-3">
+                            <div class="pillar-sub-card">
+                                <div class="pillar-sub-head">Capital Formation Experience</div>
+                                <ul>
+                                    <li>How much capital have you raised, for what products, and over what periods?</li>
+                                    <li>Most significant fundraise you've led &mdash; key drivers and your role?</li>
+                                    <li>Most complex strategy for which you've raised capital?</li>
+                                </ul>
+                            </div>
+                            <div class="pillar-sub-card">
+                                <div class="pillar-sub-head">LP Segmentation</div>
+                                <ul>
+                                    <li>How do you segment across LP types, geographies, and ticket sizes?</li>
+                                    <li>How do you adjust for pension vs. sovereign wealth vs. family office?</li>
+                                </ul>
+                            </div>
+                            <div class="pillar-sub-card">
+                                <div class="pillar-sub-head">Market Intelligence &amp; Portfolio Fluency</div>
+                                <ul>
+                                    <li>How do you stay current on LP appetite and capital flows?</li>
+                                    <li>Have you worked with customized structures (co-invest, SMAs, GP-led secondaries)?</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="pillar">
+                    <div class="pillar-num">2</div>
+                    <div class="pillar-head">
+                        <h4>Capital Formation Strategy &amp; Process</h4>
+                        <p class="pillar-desc"><strong>Effectiveness in sourcing, engaging, and &ldquo;closing&rdquo; institutional LPs.</strong> Interrogatories may include&hellip;</p>
+                    </div>
+                    <div class="pillar-body">
+                        <div class="pillar-subs cols-2x2">
+                            <div class="pillar-sub-card">
+                                <div class="pillar-sub-head">Prospecting: Sourcing &amp; Evaluating</div>
+                                <ul>
+                                    <li>How do you identify and prioritize potential LPs?</li>
+                                    <li>How do you build a heat map &mdash; cite a time it influenced strategy?</li>
+                                </ul>
+                            </div>
+                            <div class="pillar-sub-card">
+                                <div class="pillar-sub-head">Prioritizing / Assessing LP Engagement</div>
+                                <ul>
+                                    <li>How do you determine whether an LP is a good fit?</li>
+                                    <li>What are key indicators of serious intent to invest?</li>
+                                    <li>What do you do if an interested LP falls silent?</li>
+                                </ul>
+                            </div>
+                            <div class="pillar-sub-card">
+                                <div class="pillar-sub-head">Engaging &amp; Pitching New Investors</div>
+                                <ul>
+                                    <li>Cold outreach vs. &ldquo;relationships of influence&rdquo; &mdash; how do you balance?</li>
+                                    <li>Key elements of an effective first meeting with an LP?</li>
+                                    <li>How do you handle objections or skepticism?</li>
+                                </ul>
+                            </div>
+                            <div class="pillar-sub-card">
+                                <div class="pillar-sub-head">&ldquo;Closing&rdquo; &amp; Finalizing LP Commitments</div>
+                                <ul>
+                                    <li>How do you move an LP from interest to commitment?</li>
+                                    <li>How do you create urgency without being pushy?</li>
+                                    <li>Describe a complex LP negotiation you closed?</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="pillar">
+                    <div class="pillar-num">3</div>
+                    <div class="pillar-head">
+                        <h4>LP Relationship Management &amp; Team Collaboration</h4>
+                        <p class="pillar-desc"><strong>Extending LP relationships, preserving client centricity while collaborating with all parts of the institution.</strong> Interrogatories may include&hellip;</p>
+                    </div>
+                    <div class="pillar-body">
+                        <div class="pillar-subs cols-2">
+                            <div class="pillar-sub-card">
+                                <div class="pillar-sub-head">Nurturing &amp; Expanding LP Relationships</div>
+                                <ul>
+                                    <li>How do you build and deepen long-term LP relationships?</li>
+                                    <li>How do you balance new LPs vs. deepening existing ones?</li>
+                                    <li>How do you upsell or re-engage LPs in future funds?</li>
+                                </ul>
+                            </div>
+                            <div class="pillar-sub-card">
+                                <div class="pillar-sub-head">Influencing Decisions &amp; Building Trust</div>
+                                <ul>
+                                    <li>What fund terms do LPs scrutinize most, and how do you address them?</li>
+                                    <li>How do you highlight differentiation vs. competitors?</li>
+                                    <li>Describe a situation where you changed an LP's mind?</li>
+                                </ul>
+                            </div>
+                            <div class="pillar-sub-card" style="grid-column: 1 / -1;">
+                                <div class="pillar-sub-head">Fostering Internal Collaboration</div>
+                                <ul>
+                                    <li>How do you align capital formation with broader firm objectives?</li>
+                                    <li>How do you communicate LP insights to investment teams or leadership?</li>
+                                    <li>Have you pushed back against internal teams on LP feedback?</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pillar 4 -->
+                <div class="pillar">
+                    <div class="pillar-num">4</div>
+                    <div class="pillar-head">
+                        <h4>Values &amp; Innate Abilities</h4>
+                        <p class="pillar-desc"><strong>Core beliefs and motivators that drive decisions and the cognitive toolkit to solve problems and overcome obstacles.</strong> Interrogatories may include&hellip;</p>
+                    </div>
+                    <div class="pillar-body">
+                        <div class="pillar-subs cols-2">
+                            <div class="pillar-sub-card">
+                                <div class="pillar-sub-head">Core Beliefs &amp; Driving Motivators</div>
+                                <ul>
+                                    <li>Walk us through your career trajectory and key decisions?</li>
+                                    <li>What adversity have you confronted &mdash; how did you come back from it?</li>
+                                    <li>Describe a time you pushed back on a matter of principle?</li>
+                                </ul>
+                            </div>
+                            <div class="pillar-sub-card">
+                                <div class="pillar-sub-head">Intellectual Curiosity &amp; Problem Solving</div>
+                                <ul>
+                                    <li>How do you troubleshoot a stagnating capital raise?</li>
+                                    <li>Describe competing for an LP commitment against another firm?</li>
+                                    <li>Most unconventional but effective strategy to source new LPs?</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Strategic Business Plan capstone -->
+            <div class="capstone">
+                <div class="capstone-title">The Strategic Business Plan</div>
+                <div class="capstone-cols">
+                    <div class="capstone-col">
+                        <h5>A Strategic Business Plan may include&hellip;</h5>
+                        <ul>
+                            <li>Fundraising Market Landscape</li>
+                            <li>LP Demand / Sentiment</li>
+                            <li><span data-bind="meta.project_codename">[PROJECT_CODENAME]</span> Platform Review &amp; Analysis</li>
+                            <li>Opportunities for Product Expansion</li>
+                            <li>Narrative and Value Proposition</li>
+                            <li>Current LP Base Assessment</li>
+                            <li>Capital Formation Process &amp; Prospecting</li>
+                            <li>Existing LP Relationship Strategy</li>
+                            <li>Data, Technology, and Reporting Review</li>
+                            <li>3-/6-/12-Month Action Plan: Deliverables &amp; Targets, etc.</li>
+                            <li>Team Design &amp; Talent Strategy</li>
+                        </ul>
+                    </div>
+                    <div class="capstone-col">
+                        <h5>&hellip;and will help illuminate</h5>
+                        <ul>
+                            <li>Candidate Engagement Level</li>
+                            <li>Business Acumen</li>
+                            <li>Emotional Intelligence</li>
+                            <li>Analytical Thinking / Rigor</li>
+                            <li>Commercial Sensibility</li>
+                            <li>Process Orientation &amp; Approach</li>
+                            <li>Relationship Management Philosophy &amp; Culture Alignment</li>
+                            <li>Active Listening</li>
+                            <li>Presence &amp; Gravitas</li>
+                            <li>Market Knowledge / Content Command &amp; Fluency</li>
+                            <li>Team and Cultural Integration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- IV. Outcomes -->
+    <section id="outcomes" class="section">
+        <div class="section-header"><h2>IV. Outcomes</h2></div>
+        <div class="archetypes-block">
+            <div class="archetype-grid" id="archetypeGrid"></div>
+        </div>
+    </section>
+
+    <!-- V. Search Phases -->
+    <section id="process" class="section">
+        <div class="section-header"><h2>V. Search Phases</h2></div>
+        <div class="tf-section">
+            <div class="tf-header">
+                <h4>Timeline &amp; Funnel</h4>
+                <div class="tf-badge">13-Week Engagement</div>
+            </div>
+            <div class="tf-rows" id="tfRows"></div>
+        </div>
+    </section>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <div class="footer-inner">
+        <div class="logo-line">Goldsmith &amp; Co &times; <span data-bind="meta.client">[CLIENT]</span></div>
+        <div class="fine-print">
+            <span data-bind="meta.role">[ROLE]</span> &mdash; Representative Hires, Process &amp; Methodology<br>
+            This document is confidential and intended solely for the use of <span data-bind="meta.client">[CLIENT]</span>.<br>
+            &copy; 2026 Goldsmith &amp; Co. All rights reserved.
+        </div>
+    </div>
+</div>
+
+<script>
+async function init() {
+    const data = await (await fetch('./data.json')).json();
+    bindData(data);
+    renderUniverse(data);
+    renderPool(data);
+    renderHeroMarquee(data);
+    renderCaseStatStrip(data);
+    renderHiresTable(data);
+    renderTimeline(data);
+    renderArchetypes(data);
+    armReveals();
+    armHeroCountUp();
+}
+
+// Resolve a dotted path like "meta.client" against a data object.
+function getPath(obj, path) {
+    return path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), obj);
+}
+
+// Fill any element with [data-bind="meta.foo"] by setting its textContent.
+// Hide elements with [data-show-when="meta.foo"] when that path resolves falsy.
+// Wire [data-doc-title] and [data-client-logo] for the few non-text fields.
+function bindData(data) {
+    document.querySelectorAll('[data-bind]').forEach(el => {
+        const v = getPath(data, el.getAttribute('data-bind'));
+        if (v != null && v !== '') el.textContent = v;
+    });
+    document.querySelectorAll('[data-show-when]').forEach(el => {
+        const v = getPath(data, el.getAttribute('data-show-when'));
+        const show = v != null && v !== '';
+        el.hidden = !show;
+    });
+    const titleEl = document.querySelector('[data-doc-title]');
+    if (titleEl) {
+        const role = (data.meta && data.meta.role) || '';
+        const client = (data.meta && data.meta.client) || '';
+        const parts = [role, client, 'Goldsmith & Co'].filter(Boolean);
+        titleEl.textContent = parts.join(' | ');
+    }
+    const logo = document.querySelector('[data-client-logo]');
+    if (logo) {
+        const src = (data.meta && data.meta.client_logo) || '';
+        if (src) {
+            logo.src = src;
+            logo.alt = (data.meta && data.meta.client) || '';
+            logo.hidden = false;
+        }
+    }
+}
+
+function renderArchetypes(data) {
+    const host = document.getElementById('archetypeGrid');
+    if (!host || !Array.isArray(data.archetypes)) return;
+    const dims = Array.isArray(data.dimensions) ? data.dimensions : [];
+
+    host.innerHTML = data.archetypes.map((a, i) => {
+        const hasScores = a.scores && dims.length > 0;
+        let composite = 0;
+        let weightSum = 0;
+        if (hasScores) {
+            dims.forEach(d => {
+                if (a.scores[d.id] != null) {
+                    composite += a.scores[d.id] * d.weight;
+                    weightSum += d.weight;
+                }
+            });
+            if (weightSum > 0) composite = composite / weightSum;
+        }
+        const compStr = (hasScores && weightSum > 0) ? String(Math.round(composite)) : '';
+        const tier = a.tier || 'A';
+
+        const bars = hasScores ? dims.map(d => {
+            const v = a.scores[d.id];
+            const has = v != null;
+            return `<div class="bar-row">
+                <div class="bar-label">${d.label}</div>
+                <div class="bar-track"><div class="bar-fill" data-target-width="${has ? v : 0}%" style="width:0%;background:${d.color}"></div></div>
+                <div class="bar-val">${has ? v : '—'}</div>
+            </div>`;
+        }).join('') : '';
+
+        let signals = '';
+        if (Array.isArray(a.facts) && a.facts.length) {
+            signals = `<div class="signals-block facts-block">
+                <ul class="facts-list">${a.facts.map(f => `<li><span class="fact-label">${f.label}:</span> <span class="fact-value">${f.value}</span></li>`).join('')}</ul>
+               </div>`;
+        } else if (Array.isArray(a.signals) && a.signals.length) {
+            signals = `<div class="signals-block">
+                <h5>Career Signals</h5>
+                <ul>${a.signals.map(s => `<li>${s}</li>`).join('')}</ul>
+               </div>`;
+        }
+
+        const letter = String.fromCharCode(65 + i);
+
+        return `<div class="arch-card" id="arch-card-${i}">
+            <div class="arch-header" onclick="toggleArchetype(${i})">
+                <div class="arch-letter">${letter}</div>
+                <div class="arch-title-row">
+                    <div class="arch-title">${a.name}</div>
+                    <div class="arch-firm">${a.role}${a.firm ? ' &middot; ' + a.firm : ''}</div>
+                    ${a.firm_type ? `<div class="arch-source">${a.firm_type}</div>` : ''}
+                </div>
+                <div class="arch-score">
+                    <div class="big">${compStr}</div>
+                    <span class="tier-pill tier-${tier}">Tier ${tier}</span>
+                </div>
+                <div class="arch-chevron">&#9662;</div>
+            </div>
+            <div class="arch-body">
+                <div class="arch-body-grid">
+                    <div class="score-bars">${bars}</div>
+                    ${signals}
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+function toggleArchetype(i) {
+    const card = document.getElementById('arch-card-' + i);
+    if (!card) return;
+    const opening = !card.classList.contains('open');
+    card.classList.toggle('open');
+    if (opening) {
+        card.querySelectorAll('.bar-fill').forEach(f => {
+            if (f.dataset.targetWidth) {
+                requestAnimationFrame(() => { f.style.width = f.dataset.targetWidth; });
+            }
+        });
+    }
+}
+
+function buildLogoImg(name, domain, fallbackClass) {
+    const img = document.createElement('img');
+    img.src = 'https://logo.clearbit.com/' + domain;
+    img.alt = name;
+    img.loading = 'lazy';
+    img.onerror = function () {
+        this.onerror = null;
+        const span = document.createElement('span');
+        span.className = fallbackClass || 'logo-fallback';
+        span.textContent = name;
+        this.replaceWith(span);
+    };
+    return img;
+}
+
+function renderHeroMarquee(data) {
+    const track = document.getElementById('heroMarqueeTrack');
+    if (!track || !Array.isArray(data.partners) || data.partners.length === 0) return;
+    // Duplicate the list so the -50% translate creates a seamless loop.
+    const items = data.partners.concat(data.partners);
+    track.innerHTML = '';
+    items.forEach(p => {
+        const wrap = document.createElement('div');
+        wrap.className = 'hero-marquee-item';
+        if (p.domain) {
+            wrap.appendChild(buildLogoImg(p.name, p.domain, 'logo-fallback'));
+        } else {
+            const span = document.createElement('span');
+            span.className = 'logo-fallback';
+            span.textContent = p.name;
+            wrap.appendChild(span);
+        }
+        track.appendChild(wrap);
+    });
+}
+
+function renderCaseStatStrip(data) {
+    const host = document.getElementById('caseStatStrip');
+    if (!host || !Array.isArray(data.kpis)) return;
+    host.innerHTML = data.kpis.map(k => `
+        <div class="cs-stat">
+            <div class="cs-stat-value">${k.value}</div>
+            <div class="cs-stat-label">${k.label}</div>
+            <div class="cs-stat-sub">${k.sub}</div>
+        </div>`).join('');
+}
+
+function renderHiresTable(data) {
+    const host = document.getElementById('hiresTableBody');
+    if (!host || !Array.isArray(data.track_record)) return;
+    const maxWeeks = 21;
+
+    host.innerHTML = data.track_record.map(t => {
+        const wks = t.weeks_to_close || 0;
+        const pct = Math.min(100, Math.round((wks / maxWeeks) * 100));
+        const prospects = t.prospects_screened != null ? t.prospects_screened : '—';
+        const expHtml = t.experience ? `<span class="hires-exp"> &middot; ${t.experience}</span>` : '';
+
+        return `<tr>
+            <td>
+                <div class="hires-role">${t.role || ''}</div>
+            </td>
+            <td class="hires-firm">${t.firm_type || ''}${expHtml}</td>
+            <td class="hires-prospects">${prospects}</td>
+            <td>
+                <div class="weeks-bar">
+                    <span class="weeks-bar-label">${wks} weeks</span>
+                    <span class="weeks-bar-track"><span class="weeks-bar-fill" data-target-width="${pct}%" style="width:0%"></span></span>
+                </div>
+            </td>
+        </tr>`;
+    }).join('');
+}
+
+function armReveals() {
+    // Tag sections + tile grids with .reveal, and stagger child tiles.
+    // Sections themselves are not animated — they can be too tall to ever satisfy
+    // the IntersectionObserver threshold, which would leave them stuck at opacity:0.
+    // Children below get the reveal/stagger treatment instead.
+    document.querySelectorAll('#universeStrip .kpi, #caseStatStrip .cs-stat, .obs-card').forEach((el, i) => {
+        el.classList.add('reveal', 'stagger-' + ((i % 6) + 1));
+    });
+    document.querySelectorAll('.role-bar-row, .pillar, .ls-card, .tf-row, .hires-table tbody tr').forEach((el, i) => {
+        el.classList.add('reveal', 'stagger-' + ((i % 6) + 1));
+    });
+
+    // Cache role bar target widths, reset to 0, reinstate on reveal.
+    const roleFills = document.querySelectorAll('.role-bar-fill');
+    roleFills.forEach(f => {
+        f.dataset.targetWidth = f.style.width;
+        f.style.width = '0%';
+    });
+    // Weeks-bar fills already carry their target in data-target-width; they start at 0%.
+
+    if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('in-view'));
+        roleFills.forEach(f => f.style.width = f.dataset.targetWidth);
+        document.querySelectorAll('.weeks-bar-fill').forEach(f => { if (f.dataset.targetWidth) f.style.width = f.dataset.targetWidth; });
+        document.querySelectorAll('#universeStrip .kpi .value, #caseStatStrip .cs-stat-value, .hs-v').forEach(el => countUp(el));
+        return;
+    }
+
+    const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            const el = e.target;
+            el.classList.add('in-view');
+            // Fire count-up on any numeric value inside.
+            el.querySelectorAll('.kpi .value, .cs-stat-value, .hs-v').forEach(n => countUp(n));
+            // Re-inflate role bar fills.
+            el.querySelectorAll('.role-bar-fill').forEach(f => {
+                if (f.dataset.targetWidth) {
+                    requestAnimationFrame(() => { f.style.width = f.dataset.targetWidth; });
+                }
+            });
+            // Re-inflate weeks-bar fills.
+            el.querySelectorAll('.weeks-bar-fill').forEach(f => {
+                if (f.dataset.targetWidth) {
+                    requestAnimationFrame(() => { f.style.width = f.dataset.targetWidth; });
+                }
+            });
+            obs.unobserve(el);
+        });
+    }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+}
+
+function armHeroCountUp() {
+    // Hero stats animate on first paint, not tied to scroll (they're above the fold).
+    requestAnimationFrame(() => {
+        document.querySelectorAll('.hero-stats .hs-v').forEach(el => countUp(el));
+    });
+}
+
+function countUp(el) {
+    if (el.dataset.counted === '1') return;
+    const raw = (el.textContent || '').trim();
+    const match = raw.match(/^([~<>]?)\s*([0-9][0-9,\.]*)(.*)$/);
+    if (!match) return;
+    const prefix = match[1] || '';
+    const numStr = match[2].replace(/,/g, '');
+    const target = parseFloat(numStr);
+    if (isNaN(target)) return;
+    const suffix = match[3] || '';
+    const isInt = !/\./.test(numStr);
+    const hasComma = match[2].includes(',');
+    const duration = 1100;
+    const startTime = performance.now();
+    el.dataset.counted = '1';
+    function format(v) {
+        let s = isInt ? String(Math.round(v)) : v.toFixed(1);
+        if (hasComma) s = Number(s).toLocaleString('en-US');
+        return prefix + s + suffix;
+    }
+    function tick(now) {
+        const t = Math.min(1, (now - startTime) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = format(target * eased);
+        if (t < 1) requestAnimationFrame(tick);
+        else el.textContent = format(target);
+    }
+    requestAnimationFrame(tick);
+}
+
+function renderUniverse(data) {
+    const strip = document.getElementById('universeStrip');
+    strip.innerHTML = data.universe.map(k => {
+        const isInsert = (k.value || '').toString().toUpperCase().includes('INSERT');
+        return `<div class="kpi">
+            <div class="value ${isInsert ? 'insert' : ''}">${k.value}</div>
+            <div class="label">${k.label}</div>
+            <div class="sublabel">${k.sub}</div>
+        </div>`;
+    }).join('');
+}
+
+function renderPool(data) {
+    const pool = (data && data.talent_pool) || {};
+    const creditHedge     = pool.creditHedge     || [];
+    const altCredit       = pool.altCredit       || [];
+    const diversifiedAlts = pool.diversifiedAlts || [];
+    const desc            = pool.desc            || {};
+
+    const total = creditHedge.length + altCredit.length + diversifiedAlts.length;
+    const renderGroup = (label, arr) => arr.length ? `
+        <div class="pool-category">
+            <div class="pool-category-label">${label} (${arr.length})</div>
+            <div class="firm-tags">${arr.map(f => `<span class="firm-tag">${f}${desc[f] ? `<span class="firm-tooltip">${desc[f]}</span>` : ''}</span>`).join('')}</div>
+        </div>` : '';
+
+    const client = (data && data.meta && data.meta.client) || '';
+    document.getElementById('talentPoolSection').innerHTML = `
+    <div class="pool-card" id="poolCard">
+        <div class="pool-header" onclick="document.getElementById('poolCard').classList.toggle('open')">
+            <div class="pool-header-left">
+                <div class="pool-count">${total}</div>
+                <div>
+                    <div class="pool-label">Most Relevant Firms &#124; Target Talent Pool</div>
+                    <div class="pool-sublabel">Credit hedge funds, alternative credit platforms, and diversified alternative managers mapped to ${client}&rsquo;s capital-formation mandate</div>
+                </div>
+            </div>
+            <div class="pool-chevron">&#9662;</div>
+        </div>
+        <div class="pool-body">
+            ${renderGroup('Credit Hedge Funds', creditHedge)}
+            ${renderGroup('Alternative Credit Platforms', altCredit)}
+            ${renderGroup('Diversified Alternative Managers', diversifiedAlts)}
+        </div>
+    </div>`;
+}
+
+function renderTimeline(data) {
+    const rows = document.getElementById('tfRows');
+    rows.innerHTML = data.timeline.map(p => {
+        const milestones = p.milestones.map(m => {
+            const colonIdx = m.indexOf(':');
+            if (colonIdx > -1) {
+                return `<li><strong>${m.substring(0, colonIdx)}:</strong>${m.substring(colonIdx + 1)}</li>`;
+            }
+            return `<li>${m}</li>`;
+        }).join('');
+        const isRange = p.weeks.includes('–');
+        const weekLabel = isRange ? '~Weeks' : '~Week';
+        const dotWeek = isRange ? p.weeks.split('–')[0] : p.weeks;
+        return `<div class="tf-row">
+            <div class="tf-timeline-col">
+                <div class="tf-dot">${dotWeek}</div>
+                <div class="tf-phase-info">
+                    <div class="tf-phase-name">${p.name}</div>
+                    <div class="tf-phase-weeks">${weekLabel} ${p.weeks}</div>
+                </div>
+            </div>
+            <div class="tf-funnel-col">
+                <div class="tf-bar"><span class="tf-bar-num">${p.funnel}</span> <span class="tf-bar-text">${p.bar_text}</span></div>
+                <ul class="tf-milestones">${milestones}</ul>
+            </div>
+        </div>`;
+    }).join('');
+
+    // Stagger the bars in when visible
+    const tfObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const trs = entry.target.querySelectorAll('.tf-row');
+                trs.forEach((r, i) => setTimeout(() => r.classList.add('visible'), i * 180));
+                tfObs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+    tfObs.observe(rows);
+}
+
+init();
+
+document.addEventListener('mouseover', function(e) {
+    const tag = e.target.closest('.firm-tag');
+    if (!tag) return;
+    const tip = tag.querySelector('.firm-tooltip');
+    if (!tip) return;
+    const rect = tag.getBoundingClientRect();
+    let left = rect.left + rect.width / 2 - 150;
+    if (left < 8) left = 8;
+    if (left + 300 > window.innerWidth - 8) left = window.innerWidth - 308;
+    tip.style.left = left + 'px';
+    tip.style.top = (rect.top - tip.offsetHeight - 8) + 'px';
+});
+</script>
+
+</body>
+</html>
