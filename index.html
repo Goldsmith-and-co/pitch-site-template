@@ -69,6 +69,42 @@
 
         a { color: inherit; }
 
+        /* --- DRAFT BANNER --- */
+        /* Shown only when data.json has meta.disclaimer (i.e. auto-generated
+           draft pitches). Sticky at top of viewport so the recruiter and any
+           reader sees it through the whole document. */
+        .draft-banner {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #FFC000;
+            color: #1a1a1a;
+            padding: 10px 24px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            border-bottom: 2px solid #c89100;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            text-align: center;
+            line-height: 1.4;
+        }
+        .draft-banner strong {
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-right: 8px;
+        }
+        .draft-banner__sep {
+            margin: 0 8px;
+            opacity: 0.5;
+        }
+        .draft-banner__body {
+            font-weight: 500;
+        }
+        @media print {
+            .draft-banner { position: static; }
+        }
+
         /* --- MASTHEAD --- */
         .masthead { background: var(--white); border-bottom: 1px solid var(--mist); }
         .masthead-inner {
@@ -1400,6 +1436,13 @@
     </style>
 </head>
 <body>
+
+<!-- Draft banner (auto-hides when meta.disclaimer is absent) -->
+<div class="draft-banner" data-show-when="meta.disclaimer" hidden>
+    <strong>Draft</strong>
+    <span class="draft-banner__sep">·</span>
+    <span class="draft-banner__body" data-bind="meta.disclaimer"></span>
+</div>
 
 <!-- Masthead -->
 <div class="masthead">
